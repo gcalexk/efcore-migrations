@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Elemental.Components.Forms;
 
 namespace efcore_bl.Data
@@ -15,7 +16,12 @@ namespace efcore_bl.Data
         [MaxLength(200)]
         public string Quest { get; set; }
 
-        // [MaxLength(20)]
-        // public string FavColour { get; set; }
+        public KnightTable Table { get; set; }
+
+        [ForeignKey("Table")]
+        public int? TableId { get; set; }
+
+        [MaxLength(20)]
+        public string FavColour { get; set; }
     }
 }

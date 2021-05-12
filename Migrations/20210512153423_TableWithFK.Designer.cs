@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using efcore_bl.Data;
 
 namespace efcore_bl.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210512153423_TableWithFK")]
+    partial class TableWithFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,14 +39,6 @@ namespace efcore_bl.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("KnightTable");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            MaxSeats = 20,
-                            Shape = "Round"
-                        });
                 });
 
             modelBuilder.Entity("efcore_bl.Data.TestKnight", b =>
@@ -53,10 +47,6 @@ namespace efcore_bl.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<string>("FavColour")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(50)
@@ -74,15 +64,6 @@ namespace efcore_bl.Migrations
                     b.HasIndex("TableId");
 
                     b.ToTable("TestKnights");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Lancelot",
-                            Quest = "To seek the holy grail",
-                            TableId = 1
-                        });
                 });
 
             modelBuilder.Entity("efcore_bl.Data.TestKnight", b =>
